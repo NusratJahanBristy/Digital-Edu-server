@@ -12,25 +12,30 @@ app.get('/', (req, res) => {
 });
 
 app.get('/courses-categories', (req, res) => {
-    res.send(courses)
+    res.send(categories)
+});
+app.get('/category', (req, res) => {
+    res.send(categories)
 });
 
 app.get('/category/:id', (req, res) => {
     const id = req.params.id;
+    console.log(id)
     if (id === '07') {
-        res.send(categories);
+        res.send(courses);
     }
     else {
-        const category_courses = courses.filter(n => n.category_id === id);
+        const category_courses = courses.filter(n => n.categoryid == id);
+        console.log(category_courses)
         res.send(category_courses);
     }
 })
 app.get('/courses', (req, res) =>{
     res.send(courses);
 });
-app.get('/categories/:id', (req, res) => {
+app.get('/courses/:id', (req, res) => {
     const id = req.params.id;
-    const selectedCourses= courses.find(n => n._id === id);
+    const selectedCourses= courses.find(n => n.id == id);
     res.send(selectedCourses);
 });
 
